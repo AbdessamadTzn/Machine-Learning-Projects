@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import joblib
 
 #Load the model
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return "Test"
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
