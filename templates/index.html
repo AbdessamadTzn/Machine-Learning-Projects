@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block
+content %}
 <div
   style="
     background-image: url('/static/project-3.jpg');
@@ -19,15 +20,14 @@
   >
     <div class="container">
       <h1 style="text-align: center">Titanic Disaster Analysis</h1>
-      <p style="text-align: center">
-        Please provide the following information:
-      </p>
+      <p>Please provide the following information:</p>
     </div>
     <div>
       <form
+        id="titanicForm"
         class="mx-auto"
         style="margin-top: 20px; max-width: 300px"
-        action="/predict"
+        action="/"
         method="POST"
       >
         <div class="mb-3">
@@ -117,4 +117,34 @@
     </div>
   </div>
 </div>
+
+<script>
+  document
+    .getElementById("titanicForm")
+    .addEventListener("submit", function (event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Collect form data
+      const formData = new FormData(this);
+
+      // Send form data to the server using fetch API
+      fetch("/", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json()) // Assuming the response from server is in JSON format
+        .then((data) => {
+          // Display pop-up message based on the response
+          const survived = data.survived ? "Survived" : "Did not survive";
+          alert(`Passenger ${survived}`);
+
+          // Submit the form after processing the data
+          this.submit();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    });
+</script>
+
 {% endblock %}
