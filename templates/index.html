@@ -1,150 +1,134 @@
-{% extends 'base.html' %} {% block title %} Welcome {% endblock %} {% block
-content %}
-<div
-  style="
-    background-image: url('/static/project-3.jpg');
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  "
->
-  <div
-    style="
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-    "
-  >
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titanic Survival Prediction</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-image: url("/static/project-3.jpg");
+        background-size: cover;
+        height: 100vh;
+      }
+      .container {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
     <div class="container">
-      <h1 style="text-align: center">Titanic Disaster Analysis</h1>
-      <p>Please provide the following information:</p>
-    </div>
-    <div>
-      <form
-        id="titanicForm"
-        class="mx-auto"
-        style="margin-top: 20px; max-width: 300px"
-        action="/"
-        method="POST"
-      >
-        <div class="mb-3">
-          <label for="pclass" class="form-label" style="color: black"
-            >P-class</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="pclass"
-            name="pclass"
-            aria-describedby="emailHelp"
-          />
+      <h1 class="text-center">Titanic Survival Prediction</h1>
+      <form id="titanicForm">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="pclass">Passenger Class</label>
+            <input
+              type="number"
+              class="form-control"
+              id="pclass"
+              name="pclass"
+              required
+              min="1"
+              max="3"
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="sex">Sex</label>
+            <select class="form-control" id="sex" name="sex" required>
+              <option value="1">Female</option>
+              <option value="0">Male</option>
+            </select>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="age">Age</label>
+            <input
+              type="number"
+              class="form-control"
+              id="age"
+              name="age"
+              required
+            />
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="sex" class="form-label" style="color: black"
-            >Sex (0 for men & 1 for women)</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="sex"
-            name="sex"
-            aria-describedby="emailHelp"
-          />
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="sibsp">Number of Siblings/Spouses Aboard</label>
+            <input
+              type="number"
+              class="form-control"
+              id="sibsp"
+              name="sibsp"
+              required
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="parch">Number of Parents/Children Aboard</label>
+            <input
+              type="number"
+              class="form-control"
+              id="parch"
+              name="parch"
+              required
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="fare">Fare</label>
+            <input
+              type="number"
+              class="form-control"
+              id="fare"
+              name="fare"
+              required
+            />
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="age" class="form-label" style="color: black">Age</label>
-          <input
-            type="text"
-            class="form-control"
-            id="age"
-            name="age"
-            aria-describedby="emailHelp"
-          />
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="embarked">Embarked</label>
+            <select class="form-control" id="embarked" name="embarked" required>
+              <option value="0">Cherbourg</option>
+              <option value="1">Queenstown</option>
+              <option value="2">Southampton</option>
+            </select>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="sibsp" class="form-label" style="color: black"
-            >Siblings/Spouses Aboard</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="sibsp"
-            name="sibsp"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="parch" class="form-label" style="color: black"
-            >Parents/Children Aboard</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="parch"
-            name="parch"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="fare" class="form-label" style="color: black"
-            >Your ticket price</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="fare"
-            name="fare"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="embarked" class="form-label" style="color: black"
-            >Embarked (C, Q, S)</label
-          >
-          <input
-            type="text"
-            class="form-control"
-            id="embarked"
-            name="embarked"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary btn-block">Predict</button>
       </form>
+      <div id="result" class="mt-3"></div>
     </div>
-  </div>
-</div>
 
-<script>
-  document
-    .getElementById("titanicForm")
-    .addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form submission
-
-      // Collect form data
-      const formData = new FormData(this);
-
-      // Send form data to the server using fetch API
-      fetch("/", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json()) // Assuming the response from server is in JSON format
-        .then((data) => {
-          // Display pop-up message based on the response
-          const survived = data.survived ? "Survived" : "Did not survive";
-          alert(`Passenger ${survived}`);
-
-          // Submit the form after processing the data
-          this.submit();
-        })
-        .catch((error) => {
-          console.error("Error:", error);
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      document
+        .getElementById("titanicForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+          const formData = new FormData(this);
+          fetch("/predict", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              const prediction =
+                data.prediction === 1 ? "Survived" : "Did not survive";
+              document.getElementById(
+                "result"
+              ).innerHTML = `<div class="alert alert-info" role="alert">${prediction}</div>`;
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
         });
-    });
-</script>
-
-{% endblock %}
+    </script>
+  </body>
+</html>

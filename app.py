@@ -19,20 +19,22 @@ def predict():
     parch = request.form['parch']
     fare = request.form['fare']
     embarked = request.form['embarked']
+    try:
+        pclass = int(pclass)
+        sex = int(sex)
+        age = float(age)
+        sibsp = int(sibsp)
+        parch = int(parch)
+        fare = float(fare)
+        embarked = int(embarked)
 
-    pclass = int(pclass)
-    sex = int(sex)
-    age = float(age)
-    sibsp = int(sibsp)
-    parch = int(parch)
-    fare = float(fare)
-    embarked = int(embarked)
+        #make predictions
+        features = [[pclass, sex, age, sibsp, parch, fare, embarked]]
+        prediction = model.predict(features)[0]
 
-    #make predictions
-    features = [[pclass, sex, age, sibsp, parch, fare, embarked]]
-    prediction = model.predict(features)[0]
-
-    return jsonify({'prediction': int(prediction)})
+        return jsonify({'prediction': int(prediction)})
+    except Exception as e:
+        return jsonify({'error': str(e)}), 400
 
 
 
