@@ -6,6 +6,8 @@ This is my machine learning projects's overview!
 
 Utilizing Python and data science methodologies, this project aims to construct a predictive model to estimate the probability of survival for passengers aboard the Titanic. By leveraging machine learning algorithms, the model will analyze historical data to infer survival outcomes based on various passenger attributes. 
 
+[Demo Here](https://www.linkedin.com/posts/abdessamadtouzani_datascience-dataanalysis-machinelearning-activity-7180862067959066624-Iffu?utm_source=share&utm_medium=member_desktop)<br>
+
 ### **Project Overview:**
 
   - **Data Preparation and Exploration:** Initially, the dataset will undergo thorough cleaning and exploration to identify patterns and insights crucial for modeling.
@@ -20,6 +22,8 @@ Utilizing Python and data science methodologies, this project aims to construct 
 
 ## **`SMS Classifier:`** 
 Develop a text classification model to classify SMS as either spam or non-spam using data science techniques in Python. 
+
+[Demo Here](https://www.linkedin.com/posts/abdessamadtouzani_datascience-ai-python-activity-7183173539326238723-_M-V?utm_source=share&utm_medium=member_desktop)<br>
 
 ### **Project Overview:**
 
